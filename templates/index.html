@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered customer segmentation system using K-Means clustering to identify customer groups for targeted marketing strategies.">
+    <title>Customer Segmentation — AI Marketing Intelligence</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">ML Pipeline</div>
+            <h1 id="page-title">Customer Segmentation</h1>
+            <p class="subtitle">AI-Powered Marketing Intelligence</p>
+        </header>
+
+        <!-- Prediction Form -->
+        <section class="card glass-card form-section">
+            <h2 class="section-title">Predict Customer Segment</h2>
+            <p class="section-desc">Enter customer financial data to identify their market segment and recommended strategy.</p>
+
+            <form action="/predict" method="POST" id="prediction-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="annual_income">Annual Income (k$)</label>
+                        <input type="number" id="annual_income" name="annual_income"
+                               min="1" max="200" value="50" step="1" required>
+                        <span class="input-hint">Range: $1k — $200k</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spending_score">Spending Score (1-100)</label>
+                        <input type="number" id="spending_score" name="spending_score"
+                               min="1" max="100" value="50" step="1" required>
+                        <span class="input-hint">1 = Low spender, 100 = High spender</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="predict-btn">
+                    <span class="btn-icon">⚡</span>
+                    Find Customer Segment
+                </button>
+            </form>
+        </section>
+
+        <!-- Segments Overview -->
+        <section class="segments-section">
+            <h2 class="section-title center">Five Customer Segments</h2>
+            <div class="segments-grid">
+                <div class="segment-card" style="--accent: #2ecc71">
+                    <div class="segment-icon">🛡️</div>
+                    <h3>Careful</h3>
+                    <p>Low Income, Low Spending</p>
+                    <span class="segment-tag">Budget-focused</span>
+                </div>
+                <div class="segment-card" style="--accent: #e74c3c">
+                    <div class="segment-icon">📊</div>
+                    <h3>Standard</h3>
+                    <p>Moderate Income, Moderate Spending</p>
+                    <span class="segment-tag">Balanced</span>
+                </div>
+                <div class="segment-card highlight" style="--accent: #f39c12">
+                    <div class="segment-icon">⭐</div>
+                    <h3>Target</h3>
+                    <p>High Income, High Spending</p>
+                    <span class="segment-tag">Priority VIP</span>
+                </div>
+                <div class="segment-card" style="--accent: #9b59b6">
+                    <div class="segment-icon">💳</div>
+                    <h3>Careless</h3>
+                    <p>Low Income, High Spending</p>
+                    <span class="segment-tag">Credit options</span>
+                </div>
+                <div class="segment-card" style="--accent: #3498db">
+                    <div class="segment-icon">🧠</div>
+                    <h3>Sensible</h3>
+                    <p>High Income, Low Spending</p>
+                    <span class="segment-tag">Quality-driven</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Train Model -->
+        <section class="card glass-card train-section">
+            <div class="train-content">
+                <div>
+                    <h2 class="section-title">Train Model</h2>
+                    <p class="section-desc">Run the full ML pipeline: Data Ingestion → Validation → Transformation → Training → Evaluation</p>
+                </div>
+                <a href="/train" class="btn btn-secondary" id="train-btn">
+                    <span class="btn-icon">🔄</span>
+                    Run Pipeline
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Customer Segmentation ML Pipeline — K-Means Clustering</p>
+            <p class="footer-links">
+                <a href="/metrics" id="metrics-link">View Metrics</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

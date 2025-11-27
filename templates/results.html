@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Customer segmentation prediction result showing the identified market segment and marketing strategy.">
+    <title>Segment Result — Customer Segmentation</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">Prediction Result</div>
+            <h1 id="result-title">Segment Identified</h1>
+        </header>
+
+        <!-- Result Card -->
+        <section class="result-card" style="--segment-color: {{ prediction.color }}">
+            <div class="result-ring">
+                <div class="result-ring-inner">
+                    <span class="result-cluster-id">{{ prediction.cluster_id }}</span>
+                </div>
+            </div>
+
+            <h2 class="result-name" id="segment-name">{{ prediction.name }}</h2>
+            <p class="result-description">{{ prediction.description }}</p>
+
+            <div class="result-details-grid">
+                <div class="result-detail">
+                    <span class="detail-label">Annual Income</span>
+                    <span class="detail-value" id="result-income">${{ annual_income|int }}k</span>
+                </div>
+                <div class="result-detail">
+                    <span class="detail-label">Spending Score</span>
+                    <span class="detail-value" id="result-spending">{{ spending_score|int }}/100</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Card -->
+        <section class="card glass-card strategy-section">
+            <h2 class="section-title">
+                <span class="strategy-icon">🎯</span>
+                Recommended Marketing Strategy
+            </h2>
+            <div class="strategy-box" style="border-left-color: {{ prediction.color }}">
+                <p class="strategy-text" id="strategy-text">{{ prediction.strategy }}</p>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="/" class="btn btn-primary" id="predict-again-btn">
+                <span class="btn-icon">🔄</span>
+                Predict Another Customer
+            </a>
+            <a href="/metrics" class="btn btn-ghost" id="view-metrics-btn">
+                View Model Metrics
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Customer Segmentation ML Pipeline — K-Means Clustering</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+flask
+numpy
+pandas
+scikit-learn
+joblib
+pyyaml
+python-box
+gunicorn
+-e .

@@ -1,0 +1,14 @@
+COLUMNS:
+  CustomerID: int64
+  Gender: object
+  Age: int64
+  Annual Income (k$): int64
+  Spending Score (1-100): int64
+
+
+FEATURE_COLUMNS:
+  - Annual Income (k$)
+  - Spending Score (1-100)
+
+
+NUM_COLUMNS: 5
