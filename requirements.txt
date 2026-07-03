@@ -5,5 +5,8 @@ scikit-learn
 joblib
 pyyaml
 python-box
+matplotlib
+seaborn
+scipy
 gunicorn
 -e .

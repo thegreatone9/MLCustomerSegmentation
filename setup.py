@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 __version__ = "0.0.1"
 
 REPO_NAME = "MLCustomerSegmentation"
-AUTHOR_USER_NAME = "TensorTitans01"
+AUTHOR_USER_NAME = ""
 SRC_REPO = "customerSegmentation"
 
 

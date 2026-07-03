@@ -52,6 +52,34 @@ flowchart LR
 | 💳 Careless | Low Income, High Spending | Installment plans, credit options |
 | 🧠 Sensible | High Income, Low Spending | Quality emphasis, investment products |
 
+## UI Walkthrough
+
+A step-by-step visual guide to the web application's prediction flow.
+
+### Step 1 — Enter Customer Data
+
+The landing page presents a clean prediction form. Enter the customer's **Annual Income** (in thousands) and their **Spending Score** (1–100), then click the gradient button to classify them.
+
+![Step 1: Prediction form with input fields for Annual Income and Spending Score](docs/screenshots/step1_prediction_form.jpg)
+
+### Step 2 — Explore the Five Segments
+
+Scroll down to see all five customer segments the model identifies. Each card shows the segment name, income/spending profile, and a marketing tag. The highlighted **Target** segment (high income, high spenders) represents the most valuable customers. Use the **Run Pipeline** button to retrain the model on updated data.
+
+![Step 2: Five segment cards and the Train Model section](docs/screenshots/step2_segments_overview.jpg)
+
+### Step 3 — View Prediction Results
+
+After submitting, the results page shows:
+- **Cluster ID** inside an animated ring
+- **Segment name** and behavioral description
+- The customer's **input values** for reference
+- A **recommended marketing strategy** tailored to that segment
+
+Click "Predict Another Customer" to return to the form, or "View Model Metrics" to see the evaluation scores.
+
+![Step 3: Prediction result with cluster ID, segment details, and marketing strategy](docs/screenshots/step3_prediction_result.jpg)
+
 ## Tech Stack
 
 - **Python 3.10+**, scikit-learn, pandas, numpy
@@ -98,12 +126,55 @@ MLCustomerSegmentation/
 │       ├── utils/               # Utility functions
 │       ├── components/          # Pipeline components
 │       └── pipeline/            # Prediction pipeline
+├── research/                    # EDA & algorithm comparison scripts
 ├── templates/                   # HTML templates
 ├── static/                      # CSS assets
 └── artifacts/                   # Generated pipeline outputs
 ```
 
+## Research & Analysis
+
+The `research/` directory contains two comprehensive analysis scripts:
+
+### Exploratory Data Analysis (`research/eda.py`)
+
+```bash
+python research/eda.py
+```
+
+Generates 7 publication-quality visualizations:
+- Feature distributions with mean/median markers
+- Gender analysis (distribution, income, spending)
+- Correlation heatmap
+- Pairwise scatter plots
+- Income vs Spending scatter (colored by age)
+- Box plots with outlier detection
+- Age group spending patterns
+
+### Algorithm Comparison (`research/algorithm_comparison.py`)
+
+```bash
+python research/algorithm_comparison.py
+```
+
+Compares **4 clustering algorithms** side by side:
+
+| Algorithm | Silhouette ↑ | Davies-Bouldin ↓ | Calinski-Harabasz ↑ |
+|-----------|:---:|:---:|:---:|
+| **K-Means (k=5)** | **0.555** | **0.572** | **248.6** |
+| Hierarchical (Ward) | 0.554 | 0.578 | 244.4 |
+| GMM (k=5) | 0.554 | 0.576 | 244.9 |
+| DBSCAN | 0.354 | 0.736 | 69.1 |
+
+Also includes:
+- **Elbow method** with silhouette score per k
+- **Dendrogram** for hierarchical clustering
+- **Cluster stability analysis** (20 runs with different seeds — verdict: **highly stable**)
+
+All figures are saved to `research/figures/`.
+
 ## Getting Started
+
 
 ### Prerequisites
 
@@ -187,3 +258,7 @@ All artifact paths and data sources are configured here. Modify to change data s
 ### `schema.yaml` — Data Schema
 
 Defines expected column names and types for validation.
+
+## Acknowledgments
+
+This project is based on the original work by [**Tensor Titans**](https://github.com/TensorTitans01) who provided the dataset and the overall project idea. The codebase has been restructured into a modular ML pipeline architecture with proper config management, Docker support, and deployment readiness.
